@@ -80,7 +80,7 @@
 <body>
   <img id="rotate" src="img/rotate.gif">
 
-        <div class="meeple" style="background-image:url(img/bluemeeple.png)" oncontextmenu="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/bluemeeple.png)" ondblclick="countLap(this)"></div>
         <div class="meeple" style="background-image:url(img/redmeeple.png)" ondblclick="countLap(this)"></div>
         <div class="meeple" style="background-image:url(img/greenmeeple.png)" ondblclick="countLap(this)"></div>
         <div class="meeple" style="background-image:url(img/blackmeeple.png)" ondblclick="countLap(this)"></div>
@@ -94,6 +94,7 @@
     for (var i = 0; i < meeples.length; i++) {
         meeples.item(i).style.left=xs[i]+"vw";
         meeples.item(i).style.top=ys[i]+"vh";
+        doubleTap(meeples.item(i));
     }
 
     Draggable.zIndex = 0;
@@ -116,6 +117,10 @@
       }
       e.innerText = prevInnerText + 50;
 }
+
+
+
+
 
 function doubleTap(d,h,e){if("ontouchstart"in d){var h=Math.abs(+h)||500,e=Math.abs(+e)||40,i,f,g,j=function(){i=0;g=f=NaN};j();d.addEventListener("touchstart",function(b){var a=b.changedTouches[0]||{},c=f,k=g;i++;f=+a.pageX||+a.clientX||+a.screenX;g=+a.pageY||+a.clientY||+a.screenY;Math.abs(c-f)<e&&Math.abs(k-g)<e&&(c=document.createEvent("MouseEvents"),c.initMouseEvent&&c.initMouseEvent("dblclick",!0,!0,b.view,i,a.screenX,a.screenY,a.clientX,a.clientY,b.ctrlKey,b.altKey,b.shiftKey,b.metaKey,b.button,
 a.target),d.dispatchEvent(c));setTimeout(j,h)},!1);d.addEventListener("touchmove",function(){j()},!1)}};
