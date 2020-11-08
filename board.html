@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/Draggable.min.js"></script>
+  <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+      body {
+        height: 100vh;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        background-image: url("img/scoreboard.jpg");
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        }
+
+        .meeple{
+            height: 10vh;
+            position:fixed;
+            z-index: 0;
+        }
+  </style>
+
+</head>
+<body>
+
+        <img class="meeple" id="blue" src="img/bluemeeple.png">
+        <img class="meeple" id="red" src="img/redmeeple.png">
+        <img class="meeple" id="green" src="img/greenmeeple.png">
+        <img class="meeple" id="black" src="img/blackmeeple.png">
+        <img class="meeple" id="yellow" src="img/yellowmeeple.png">
+
+  <script>
+
+
+    var meeples = document.getElementsByClassName("meeple");
+    var xs = [82,79,87,89,92]
+    var ys = [81,71,70,88,79]
+    for (var i = 0; i < meeples.length; i++) {
+        meeples.item(i).style.left=xs[i]+"vw";
+        meeples.item(i).style.top=ys[i]+"vh";
+    }
+
+    Draggable.zIndex = 0;
+    Draggable.create(".meeple", {
+        bounds:"body",
+        onDragEnd: function(e){
+            var viewportOffset = e.srcElement.getBoundingClientRect();
+            // these are relative to the viewport
+            var top = viewportOffset.top;
+            var left = viewportOffset.left;
+            console.log(top/document.documentElement.clientHeight, left/document.documentElement.clientWidth)
+        }
+    });
+
+    
+  </script>
+</body>
+</html>
