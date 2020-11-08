@@ -10,6 +10,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/Draggable.min.js"></script>
   <style>
 
+
+@import url('https://fonts.googleapis.com/css?family=Felipa');
+
+
 @media screen and (orientation:landscape)
 {
 
@@ -27,7 +31,7 @@
         background-repeat: no-repeat;
         }
 
-        @import url('https://fonts.googleapis.com/css?family=Felipa');
+        
 
         .meeple{
             /* display: block; */
@@ -80,11 +84,11 @@
 <body>
   <img id="rotate" src="img/rotate.gif">
 
-        <div class="meeple" style="background-image:url(img/bluemeeple.png)" oncontextmenu="window.alert('aaa')" ondblclick="countLap(this)"></div>
-        <div class="meeple" style="background-image:url(img/redmeeple.png)" ondblclick="countLap(this)"></div>
-        <div class="meeple" style="background-image:url(img/greenmeeple.png)" ondblclick="countLap(this)"></div>
-        <div class="meeple" style="background-image:url(img/blackmeeple.png)" ondblclick="countLap(this)"></div>
-        <div class="meeple" style="background-image:url(img/yellowmeeple.png)" ondblclick="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/bluemeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/redmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/greenmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/blackmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/yellowmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
 
   <script>
 
