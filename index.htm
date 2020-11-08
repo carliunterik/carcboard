@@ -25,11 +25,24 @@
         background-repeat: no-repeat;
         }
 
+        @import url('https://fonts.googleapis.com/css?family=Felipa');
+
         .meeple{
-            display: block;
-            height: 7vw;
+            /* display: block; */
+            height: 6.5vw;
+            width: 6.5vw;
             position:fixed;
             z-index: 0;
+            background-size: auto 6.5vw;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-indent: -1vw;
+            font-size: 1.75vw;
+            color: rgb(255, 255, 255);
+            text-shadow: rgb(0, 0, 0) 0.25vw 0.25vw 0.25vw;
+            font-family: Felipa, cursive;
         }
 
         #rotate{
@@ -65,11 +78,11 @@
 <body>
   <img id="rotate" src="img/rotate.gif">
 
-        <img class="meeple" id="blue" src="img/bluemeeple.png">
-        <img class="meeple" id="red" src="img/redmeeple.png">
-        <img class="meeple" id="green" src="img/greenmeeple.png">
-        <img class="meeple" id="black" src="img/blackmeeple.png">
-        <img class="meeple" id="yellow" src="img/yellowmeeple.png">
+        <div class="meeple" style="background-image:url(img/bluemeeple.png)" ondblclick="rotateMeeple(this)"></div>
+        <div class="meeple" style="background-image:url(img/redmeeple.png)" ondblclick="rotateMeeple(this)"></div>
+        <div class="meeple" style="background-image:url(img/greenmeeple.png)" ondblclick="rotateMeeple(this)"></div>
+        <div class="meeple" style="background-image:url(img/blackmeeple.png)" ondblclick="rotateMeeple(this)"></div>
+        <div class="meeple" style="background-image:url(img/yellowmeeple.png)" ondblclick="rotateMeeple(this)"></div>
 
   <script>
 
@@ -84,16 +97,36 @@
     Draggable.zIndex = 0;
     Draggable.create(".meeple", {
         bounds:"body",
-        onDragEnd: function(e){
-            var viewportOffset = e.srcElement.getBoundingClientRect();
-            // these are relative to the viewport
-            var top = viewportOffset.top;
-            var left = viewportOffset.left;
-            // console.log(top/document.documentElement.clientHeight, left/document.documentElement.clientWidth)
-        }
+        // onDragEnd: function(e){
+        //     var viewportOffset = e.srcElement.getBoundingClientRect();
+        //     // these are relative to the viewport
+        //     var top = viewportOffset.top;
+        //     var left = viewportOffset.left;
+        //     // console.log(top/document.documentElement.clientHeight, left/document.documentElement.clientWidth)
+        // }
     });
 
+    function rotateMeeple(e){
+      if (e.innerText){
+        var prevInnerText = Number(e.innerText)
+      }else{
+        var prevInnerText = 0
+      }
+      
+      e.innerText = prevInnerText + 50;
+}
     
   </script>
 </body>
 </html>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+     
