@@ -8,6 +8,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/Draggable.min.js"></script>
   <style>
 
+@media screen and (orientation:landscape)
+{
+
         * {
             box-sizing: border-box;
         }
@@ -23,14 +26,44 @@
         }
 
         .meeple{
-            height: 6vw;
+            display: block;
+            height: 7vw;
             position:fixed;
             z-index: 0;
         }
+
+        #rotate{
+          display: none;
+        } 
+
+}
+
+
+@media screen and (orientation:portrait){
+
+  body {
+        height: 100vh;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+  }
+
+  .meeple{
+    display:  none;
+    }
+  
+  #rotate{
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
   </style>
 
 </head>
 <body>
+  <img id="rotate" src="img/rotate.gif">
 
         <img class="meeple" id="blue" src="img/bluemeeple.png">
         <img class="meeple" id="red" src="img/redmeeple.png">
@@ -39,7 +72,6 @@
         <img class="meeple" id="yellow" src="img/yellowmeeple.png">
 
   <script>
-
 
     var meeples = document.getElementsByClassName("meeple");
     var xs = [79,82,87,91,89]
@@ -57,7 +89,7 @@
             // these are relative to the viewport
             var top = viewportOffset.top;
             var left = viewportOffset.left;
-            console.log(top/document.documentElement.clientHeight, left/document.documentElement.clientWidth)
+            // console.log(top/document.documentElement.clientHeight, left/document.documentElement.clientWidth)
         }
     });
 
