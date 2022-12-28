@@ -89,12 +89,13 @@
         <div class="meeple" style="background-image:url(img/greenmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
         <div class="meeple" style="background-image:url(img/blackmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
         <div class="meeple" style="background-image:url(img/yellowmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/pinkmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
 
   <script>
 
     var meeples = document.getElementsByClassName("meeple");
-    var xs = [79,82,87,91,89]
-    var ys = [71,81,70,76,88]
+    var xs = [79,82,87,91,89,92]
+    var ys = [71,81,70,76,88,69]
     for (var i = 0; i < meeples.length; i++) {
         meeples.item(i).style.left=xs[i]+"vw";
         meeples.item(i).style.top=ys[i]+"vh";
