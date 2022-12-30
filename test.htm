@@ -101,17 +101,28 @@
     var setting = urlParams.get("p")
 
 
+
+    function defaultMeeples(){
+      var meepleColors = colors.slice(0,5)
+      meepleColors.forEach(setMeeple)
+    }
+
     // parse options and 
     if (setting == null){
       // 0ed - no parameters, set 5 players default
-	    var meepleColors = colors.slice(0,5)
-      meepleColors.forEach(setMeeple)
+	    defaultMeeples()
 
-    } else if (Number.isInteger(parseInt(setting)) & parseInt(setting) <= maxNumberMeeples){
-      // 1st - enter a number of players, parse a number 
+    } else if (Number.isInteger(parseInt(setting))){
+      // 1st - enter a number of players, parse a number and detect if the number is bigger than maxmeeples
       // console.log("number")
-	    var meepleColors = colors.slice(0,setting)
-      meepleColors.forEach(setMeeple)
+        if (parseInt(setting) <= maxNumberMeeples){
+          var meepleColors = colors.slice(0,setting)
+          meepleColors.forEach(setMeeple)
+        } else {
+          defaultMeeples()
+        }
+
+	    
 
     } else if (typeof setting === 'string' || setting instanceof String) {
       // 2nd - enter colors, parse colors and change color list
@@ -122,8 +133,7 @@
     } else {
       // something weird, get default behavior
       // console.log("weird")
-      var meepleColors = colors.slice(0,5)
-      meepleColors.forEach(setMeeple)
+      defaultMeeples()
     }
 
 
