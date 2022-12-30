@@ -213,8 +213,7 @@
     //add a third way to reduce counter, triple-click
     window.addEventListener('click', function (e) {
     if (e.detail >= 3) {
-        console.log('triple click!');
-        console.log(e.target.id)
+        countLap(e.target.id, -50)
     }
 
     });
