@@ -225,12 +225,14 @@
     window.addEventListener('contextmenu', function (e) {
         e.preventDefault()
         countLap(e.target, -50)
+        console.log("right")
     });
 
     //add a third way to reduce counter, triple-click
     window.addEventListener('click', function (e) {    
       if (e.detail === 3) {
         countLap(e.target, -100)
+        console.log("triple")
       }
     });
 
