@@ -92,18 +92,38 @@
 
   <script>
 
+     // define posible colors
+     const colors = ['black', 'blue', 'green','pink', 'red', 'yellow'];
+     const maxNumberMeeples) = 6
 
     // get parameters
     var urlParams = new URLSearchParams(window.location.search);
-    var setting = URLSearchParams.get("p")
+    var setting = urlParams.get("p")
 
 
     // parse options
+
+    // 0ed - no parameters, set 5 players default
+    if (settings == null){
+
+	var meepleColors = getColors(5)
+       setMeeples(meepleColors )
+         
+    } else if (setting.isInteger() & (setting.isInteger <= maxNumberMeeples){
     // 1st - enter a number of players, parse a number 
+	var meepleColors = getColors(setting)
+       setMeeples(meepleColors )
 
-
+    } else if () {
     // 2nd - enter colors, parse colors and change color list
+	var meepleColors = setting.split(',')
+ 
 
+    } else {
+    // something weird, get default behavior
+var meepleColors = getColors(5)
+       setMeeples(meepleColors )
+    }
 
 
 
