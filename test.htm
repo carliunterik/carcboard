@@ -137,17 +137,7 @@
     }
 
 
-    // relocate divs 
-    var meeples = document.getElementsByClassName("meeple");
-    var xs = [79,82,87,91,89,92]
-    var ys = [71,81,70,76,88,65]
-    for (var i = 0; i < meeples.length; i++) {
-        meeples.item(i).style.left=xs[i]+"vw";
-        meeples.item(i).style.top=ys[i]+"vh";
-        // doubleTap(meeples.item(i));
-    }
-
-
+      
     // create meeple divs
     function setMeeple(meepleColor){
       // console.log(item)
@@ -206,39 +196,51 @@
       } else {
         e.innerText = newNumber
       }
-
-
       
     }
 
 
 
-    // Control events with listeners instead of inline functions
+    // relocate meeple divs and set functions 
+    var meeples = document.getElementsByClassName("meeple");
+    var xs = [79,82,87,91,89,92]
+    var ys = [71,81,70,76,88,65]
+
     for (var i = 0; i < meeples.length; i++) {
-        meeple = meeples.item(i)
+      meeple = meeples.item(i)
 
-        // double click increase
-        meeple.addEventListener('dblclick', function (e) {
-          countLap(e.target, 50)
+      meeple.style.left=xs[i]+"vw";
+      meeple.style.top=ys[i]+"vh";
+      doubleTap(meeple);
 
-        });
 
-        // right click decrease
-        meeple.addEventListener('contextmenu', function (e) {
-            e.preventDefault()
-            countLap(e.target, -50)
-            console.log("right")
-        });
+      // // double click increase
+      // meeple.addEventListener('dblclick', function (e) {
+      //   countLap(e.target, 50)
+      // });
 
-        //add a third way to reduce counter, triple-click
-        meeple.addEventListener('click', function (e) {    
-          if (e.detail === 3) {
-            countLap(e.target, -100)
-            console.log("triple")
-          }
-        });
+      // right click decrease
+      meeple.addEventListener('contextmenu', function (e) {
+          e.preventDefault()
+          countLap(e.target, -50)
+          console.log("right")
+      });
 
-    };
+      //add a third way to reduce counter, triple-click
+      meeple.addEventListener('click', function (e) {    
+        if (e.detail === 3) {
+          countLap(e.target, -100)
+          console.log("triple")
+        }
+      });
+
+    }
+
+
+
+    function doubleTap(d,h,e){if("ontouchstart"in d){var h=Math.abs(+h)||500,e=Math.abs(+e)||40,i,f,g,j=function(){i=0;g=f=NaN};j();d.addEventListener("touchstart",function(b){var a=b.changedTouches[0]||{},c=f,k=g;i++;f=+a.pageX||+a.clientX||+a.screenX;g=+a.pageY||+a.clientY||+a.screenY;Math.abs(c-f)<e&&Math.abs(k-g)<e&&(c=document.createEvent("MouseEvents"),c.initMouseEvent&&c.initMouseEvent("dblclick",!0,!0,b.view,i,a.screenX,a.screenY,a.clientX,a.clientY,b.ctrlKey,b.altKey,b.shiftKey,b.metaKey,b.button,
+a.target),d.dispatchEvent(c));setTimeout(j,h)},!1);d.addEventListener("touchmove",function(){j()},!1)}};
+    
 
     
   </script>
