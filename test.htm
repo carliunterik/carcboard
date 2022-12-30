@@ -215,29 +215,34 @@
 
     // Control events with listeners instead of inline functions
 
-    // double click increase
-    window.addEventListener('dblclick', function (e) {
-      countLap(e.target, 50)
+    
+
+
+
+
+    meeples.forEach(meeple => {
+      // double click increase
+      meeple.addEventListener('dblclick', function (e) {
+        countLap(e.target, 50)
+
+      });
+
+      // right click decrease
+      meeple.addEventListener('contextmenu', function (e) {
+          e.preventDefault()
+          countLap(e.target, -50)
+          console.log("right")
+      });
+
+      //add a third way to reduce counter, triple-click
+      meeple.addEventListener('click', function (e) {    
+        if (e.detail === 3) {
+          countLap(e.target, -100)
+          console.log("triple")
+        }
+      });
 
     });
-
-    // right click decrease
-    window.addEventListener('contextmenu', function (e) {
-        e.preventDefault()
-        countLap(e.target, -50)
-        console.log("right")
-    });
-
-    //add a third way to reduce counter, triple-click
-    window.addEventListener('click', function (e) {    
-      if (e.detail === 3) {
-        countLap(e.target, -100)
-        console.log("triple")
-      }
-    });
-
-
-
 
     
   </script>
