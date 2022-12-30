@@ -137,6 +137,7 @@
 
     // create meeple divs
     function setMeeple(item){
+      console.log(item)
       // 
       // create div
         document.body.innerHTML += `<div class="meeple" style="background-image:url(img/${item}meeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>`
@@ -151,7 +152,6 @@
     
     }
 
-    window.alert("v002")
 
     Draggable.zIndex = 0;
     Draggable.create(".meeple", {
