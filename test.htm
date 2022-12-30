@@ -139,7 +139,7 @@
     function setMeeple(meepleColor){
       // 
       // create div
-        document.body.innerHTML += '<div class="meeple" style="background-image:url(img/${meepleColor}meeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>'
+        document.body.innerHTML += '<div class="meeple" style="background-image:url(img/' + meepleColor + 'meeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>'
         
         // var elem = document.createElement('div');
         // elem.style.cssText = 'position:absolute;width:100%;height:100%;opacity:0.3;z-index:100;background:#000';
