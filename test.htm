@@ -106,8 +106,8 @@
       // 0ed - no parameters, set 5 players default
 	    var meepleColors = colors.slice(5)
       meepleColors.forEach(setMeeple(element))
-         
-    } else if (setting.isInteger() & setting.isInteger <= maxNumberMeeples){
+
+    } else if (Number.isInteger(setting) & setting <= maxNumberMeeples){
       // 1st - enter a number of players, parse a number 
 	    var meepleColors = colors.slice(setting)
       meepleColors.forEach(setMeeple(element))
