@@ -136,22 +136,22 @@
 
 
     // create meeple divs
-    function setMeeple(meepleColor){
+    function setMeeple(item){
       // 
       // create div
-        // document.body.innerHTML += `<div class="meeple" style="background-image:url(img/${meepleColor}meeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>`
+        document.body.innerHTML += `<div class="meeple" style="background-image:url(img/${meepleColor}meeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>`
         
-        var meeplediv = document.createElement('div')
-        meeplediv.className = "meeple"
-        meeplediv.style.backgroundImage = `url(img/${meepleColor}meeple.png`
-        meeplediv.ondblclick = countLap(meeplediv, 50)
-        meeplediv.oncontextmenu = countLap(meeplediv, -50)
-        document.body.appendChild(meeplediv)
+        // var meeplediv = document.createElement('div')
+        // meeplediv.className = "meeple"
+        // meeplediv.style.backgroundImage = `url(img/${meepleColor}meeple.png`
+        // meeplediv.ondblclick = countLap(meeplediv, 50)
+        // meeplediv.oncontextmenu = countLap(meeplediv, -50)
+        // document.body.appendChild(meeplediv)
 
     
     }
 
-    window.alert("v001")
+    window.alert("v002")
 
     Draggable.zIndex = 0;
     Draggable.create(".meeple", {
