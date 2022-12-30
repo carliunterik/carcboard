@@ -84,17 +84,17 @@
 <body>
   <img id="rotate" src="img/rotate.gif">
 
-        <div class="meeple" style="background-image:url(img/bluemeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
-        <div class="meeple" style="background-image:url(img/redmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
-        <div class="meeple" style="background-image:url(img/greenmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
-        <div class="meeple" style="background-image:url(img/blackmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
-        <div class="meeple" style="background-image:url(img/yellowmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/bluemeeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>
+        <div class="meeple" style="background-image:url(img/redmeeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>
+        <div class="meeple" style="background-image:url(img/greenmeeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>
+        <div class="meeple" style="background-image:url(img/blackmeeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>
+        <div class="meeple" style="background-image:url(img/yellowmeeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>
 
   <script>
 
      // define posible colors
-     const colors = ['black', 'blue', 'green','pink', 'red', 'yellow'];
-     const maxNumberMeeples) = 6
+     const colors = ['red', 'blue', 'green','yellow', 'black', 'pink'];
+     const maxNumberMeeples = 6
 
     // get parameters
     var urlParams = new URLSearchParams(window.location.search);
@@ -102,42 +102,48 @@
 
 
     // parse options
-
-    // 0ed - no parameters, set 5 players default
-    if (settings == null){
-
-	var meepleColors = getColors(5)
-       setMeeples(meepleColors )
+    if (setting == null){
+      // 0ed - no parameters, set 5 players default
+	    var meepleColors = colors.slice(5)
+      setMeeples(meepleColors)
          
-    } else if (setting.isInteger() & (setting.isInteger <= maxNumberMeeples){
-    // 1st - enter a number of players, parse a number 
-	var meepleColors = getColors(setting)
-       setMeeples(meepleColors )
+    } else if (setting.isInteger() & setting.isInteger <= maxNumberMeeples){
+      // 1st - enter a number of players, parse a number 
+	    var meepleColors = colors.slice(setting)
+      setMeeples(meepleColors)
 
-    } else if () {
-    // 2nd - enter colors, parse colors and change color list
-	var meepleColors = setting.split(',')
- 
-
+    } else if (typeof setting === 'string' || setting instanceof String) {
+      // 2nd - enter colors, parse colors and change color list
+	    var meepleColors = setting.toLowerCase().split(',')
+      setMeeples(meepleColors)
+    
     } else {
-    // something weird, get default behavior
-var meepleColors = getColors(5)
-       setMeeples(meepleColors )
+      // something weird, get default behavior
+      var meepleColors = colors.slice(5)
+      setMeeples(meepleColors)
     }
-
 
 
     // create meeple divs
+    function setMeeples(meepleColors){
+      // create divs
+      for (var i = 0; i < meepleColors.length; i++) {
+
+      }
 
 
-    var meeples = document.getElementsByClassName("meeple");
-    var xs = [79,82,87,91,89]
-    var ys = [71,81,70,76,88]
-    for (var i = 0; i < meeples.length; i++) {
-        meeples.item(i).style.left=xs[i]+"vw";
-        meeples.item(i).style.top=ys[i]+"vh";
-        doubleTap(meeples.item(i));
+      // relocate divs 
+      var meeples = document.getElementsByClassName("meeple");
+      var xs = [79,82,87,91,89,92]
+      var ys = [71,81,70,76,88,65]
+      for (var i = 0; i < meeples.length; i++) {
+          meeples.item(i).style.left=xs[i]+"vw";
+          meeples.item(i).style.top=ys[i]+"vh";
+          doubleTap(meeples.item(i));
+      }
     }
+
+    
 
     Draggable.zIndex = 0;
     Draggable.create(".meeple", {
@@ -151,14 +157,36 @@ var meepleColors = getColors(5)
         // }
     });
 
-    function countLap(e){
+
+    function countLap(e, n){
+      //detect current number or set default 0
       if (e.innerText){
         var prevInnerText = Number(e.innerText)
       }else{
         var prevInnerText = 0
       }
-      e.innerText = prevInnerText + 50;
-}
+      
+      //do the operation (+ or -)
+      newNumber = prevInnerText + n;
+
+      //adjust font for bigger number
+      if (Math.abs(newNumber) > 999) {
+        e.style.fontSize = "1.5vw"
+      } else {
+        e.style.fontSize = "1.75vw"
+      }
+      
+      //avoid putting 0 on the meeple otherwise put the number
+      if (newNumber == 0){
+        e.innerText = ""
+      } else {
+        e.innerText = newNumber
+      }
+
+
+      
+    }
+
 
 
 
