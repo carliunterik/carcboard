@@ -214,20 +214,25 @@
 
 
     // Control events with listeners instead of inline functions
-    
+    window.addEventListener('dblclick', function (e) {
+      countLap(e.target, 50)
+
+    });
+
     //add a third way to reduce counter, triple-click
     window.addEventListener('click', function (e) {
-      if (e.detail === 2) {
-        countLap(e.target, 50)
-      }
+      // if (e.detail === 2) {
+      //   countLap(e.target, 50)
+      // }
     
       if (e.detail === 3) {
-        countLap(e.target, -50)
+        countLap(e.target, -100)
       }
     });
 
 
     window.addEventListener('contextmenu', function (e) {
+        e.preventDefault()
         countLap(e.target, -50)
     });
 
