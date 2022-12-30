@@ -101,26 +101,37 @@
     var setting = urlParams.get("p")
 
 
-    // parse options
+    // parse options and 
     if (setting == null){
       // 0ed - no parameters, set 5 players default
 	    var meepleColors = colors.slice(5)
-      meepleColors.forEach(setMeeple(element))
+      meepleColors.forEach(setMeeple)
 
     } else if (Number.isInteger(setting) & setting <= maxNumberMeeples){
       // 1st - enter a number of players, parse a number 
 	    var meepleColors = colors.slice(setting)
-      meepleColors.forEach(setMeeple(element))
+      meepleColors.forEach(setMeeple)
 
     } else if (typeof setting === 'string' || setting instanceof String) {
       // 2nd - enter colors, parse colors and change color list
 	    var meepleColors = setting.toLowerCase().split(',')
-      meepleColors.forEach(setMeeple(element))
+      meepleColors.forEach(setMeeple)
     
     } else {
       // something weird, get default behavior
       var meepleColors = colors.slice(5)
-      meepleColors.forEach(setMeeple(element))
+      meepleColors.forEach(setMeeple)
+    }
+
+
+    // relocate divs 
+    var meeples = document.getElementsByClassName("meeple");
+    var xs = [79,82,87,91,89,92]
+    var ys = [71,81,70,76,88,65]
+    for (var i = 0; i < meeples.length; i++) {
+        meeples.item(i).style.left=xs[i]+"vw";
+        meeples.item(i).style.top=ys[i]+"vh";
+        doubleTap(meeples.item(i));
     }
 
 
@@ -134,18 +145,7 @@
         // elem.style.cssText = 'position:absolute;width:100%;height:100%;opacity:0.3;z-index:100;background:#000';
         // document.body.appendChild(elem);
 
-      
-
-
-      // relocate divs 
-      var meeples = document.getElementsByClassName("meeple");
-      var xs = [79,82,87,91,89,92]
-      var ys = [71,81,70,76,88,65]
-      for (var i = 0; i < meeples.length; i++) {
-          meeples.item(i).style.left=xs[i]+"vw";
-          meeples.item(i).style.top=ys[i]+"vh";
-          doubleTap(meeples.item(i));
-      }
+    
     }
 
     
