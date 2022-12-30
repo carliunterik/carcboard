@@ -104,12 +104,12 @@
     // parse options and 
     if (setting == null){
       // 0ed - no parameters, set 5 players default
-	    var meepleColors = colors.slice(5)
+	    var meepleColors = colors.slice(0,5)
       meepleColors.forEach(setMeeple)
 
     } else if (Number.isInteger(setting) & setting <= maxNumberMeeples){
       // 1st - enter a number of players, parse a number 
-	    var meepleColors = colors.slice(setting)
+	    var meepleColors = colors.slice(0,setting)
       meepleColors.forEach(setMeeple)
 
     } else if (typeof setting === 'string' || setting instanceof String) {
@@ -119,7 +119,7 @@
     
     } else {
       // something weird, get default behavior
-      var meepleColors = colors.slice(5)
+      var meepleColors = colors.slice(0,5)
       meepleColors.forEach(setMeeple)
     }
 
@@ -136,11 +136,11 @@
 
 
     // create meeple divs
-    function setMeeple(item){
-      console.log(item)
+    function setMeeple(meepleColor){
+      // console.log(item)
       // 
       // create div
-        document.body.innerHTML += `<div class="meeple" style="background-image:url(img/${item}meeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>`
+        document.body.innerHTML += `<div class="meeple" style="background-image:url(img/${meepleColor}meeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>`
         
         // var meeplediv = document.createElement('div')
         // meeplediv.className = "meeple"
