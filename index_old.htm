@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  
+  <title></title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/Draggable.min.js"></script>
+  <style>
+
+
+@import url('https://fonts.googleapis.com/css?family=Felipa');
+
+
+@media screen and (orientation:landscape)
+{
+
+        * {
+            box-sizing: border-box;
+        }
+
+      body {
+        height: 100vh;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        background-image: url("img/scoreboard.jpg");
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        }
+
+        
+
+        .meeple{
+            /* display: block; */
+            height: 6.5vw;
+            width: 6.5vw;
+            position:fixed;
+            z-index: 0;
+            background-size: auto 6.5vw;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-indent: -1vw;
+            font-size: 1.75vw;
+            color: rgb(255, 255, 255);
+            text-shadow: rgb(0, 0, 0) 0.25vw 0.25vw 0.25vw;
+            font-family: Felipa, cursive;
+        }
+
+        #rotate{
+          display: none;
+        } 
+
+}
+
+
+@media screen and (orientation:portrait){
+
+  body {
+        height: 100vh;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+  }
+
+  .meeple{
+    display:  none;
+    }
+  
+  #rotate{
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+  </style>
+
+</head>
+<body>
+  <img id="rotate" src="img/rotate.gif">
+
+        <div class="meeple" style="background-image:url(img/bluemeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/redmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/greenmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/blackmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/yellowmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
+        <div class="meeple" style="background-image:url(img/pinkmeeple.png)" oncontextmenu="this.innerText = ''" ondblclick="countLap(this)"></div>
+
+  <script>
+
+    var meeples = document.getElementsByClassName("meeple");
+    var xs = [79,82,87,91,89,92]
+    var ys = [71,81,70,76,88,65]
+    for (var i = 0; i < meeples.length; i++) {
+        meeples.item(i).style.left=xs[i]+"vw";
+        meeples.item(i).style.top=ys[i]+"vh";
+        doubleTap(meeples.item(i));
+    }
+
+    Draggable.zIndex = 0;
+    Draggable.create(".meeple", {
+        bounds:"body",
+        // onDragEnd: function(e){
+        //     var viewportOffset = e.srcElement.getBoundingClientRect();
+        //     // these are relative to the viewport
+        //     var top = viewportOffset.top;
+        //     var left = viewportOffset.left;
+        //     // console.log(top/document.documentElement.clientHeight, left/document.documentElement.clientWidth)
+        // }
+    });
+
+    function countLap(e){
+      if (e.innerText){
+        var prevInnerText = Number(e.innerText)
+      }else{
+        var prevInnerText = 0
+      }
+      e.innerText = prevInnerText + 50;
+}
+
+
+
+
+
+function doubleTap(d,h,e){if("ontouchstart"in d){var h=Math.abs(+h)||500,e=Math.abs(+e)||40,i,f,g,j=function(){i=0;g=f=NaN};j();d.addEventListener("touchstart",function(b){var a=b.changedTouches[0]||{},c=f,k=g;i++;f=+a.pageX||+a.clientX||+a.screenX;g=+a.pageY||+a.clientY||+a.screenY;Math.abs(c-f)<e&&Math.abs(k-g)<e&&(c=document.createEvent("MouseEvents"),c.initMouseEvent&&c.initMouseEvent("dblclick",!0,!0,b.view,i,a.screenX,a.screenY,a.clientX,a.clientY,b.ctrlKey,b.altKey,b.shiftKey,b.metaKey,b.button,
+a.target),d.dispatchEvent(c));setTimeout(j,h)},!1);d.addEventListener("touchmove",function(){j()},!1)}};
+    
+  </script>
+</body>
+</html>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+     
