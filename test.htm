@@ -107,18 +107,21 @@
 	    var meepleColors = colors.slice(0,5)
       meepleColors.forEach(setMeeple)
 
-    } else if (Number.isInteger(setting) & setting <= maxNumberMeeples){
+    } else if (Number.isInteger(parseInt(setting)) & parseInt(setting) <= maxNumberMeeples){
       // 1st - enter a number of players, parse a number 
+      // console.log("number")
 	    var meepleColors = colors.slice(0,setting)
       meepleColors.forEach(setMeeple)
 
     } else if (typeof setting === 'string' || setting instanceof String) {
       // 2nd - enter colors, parse colors and change color list
+      // console.log("string")
 	    var meepleColors = setting.toLowerCase().split(',')
       meepleColors.forEach(setMeeple)
     
     } else {
       // something weird, get default behavior
+      // console.log("weird")
       var meepleColors = colors.slice(0,5)
       meepleColors.forEach(setMeeple)
     }
