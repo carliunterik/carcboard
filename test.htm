@@ -212,7 +212,7 @@
 
     //add a third way to reduce counter, triple-click
     window.addEventListener('click', function (e) {
-    if (evt.detail >= 3) {
+    if (e.detail >= 3) {
         console.log('triple click!');
         console.log(e.target.id)
     }
