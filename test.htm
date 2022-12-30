@@ -153,8 +153,11 @@
       // console.log(item)
       // 
       // create div
-        document.body.innerHTML += `<div class="meeple" style="background-image:url(img/${meepleColor}meeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>`
+        // document.body.innerHTML += `<div class="meeple" style="background-image:url(img/${meepleColor}meeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>`
         
+        document.body.innerHTML += `<div class="meeple" style="background-image:url(img/${meepleColor}meeple.png)"></div>`
+        
+
         // var meeplediv = document.createElement('div')
         // meeplediv.className = "meeple"
         // meeplediv.style.backgroundImage = `url(img/${meepleColor}meeple.png`
@@ -210,12 +213,22 @@
 
 
 
+    // Control events with listeners instead of inline functions
+    
     //add a third way to reduce counter, triple-click
     window.addEventListener('click', function (e) {
-    if (e.detail >= 3) {
+      if (e.detail === 2) {
+        countLap(e.target, 50)
+      }
+    
+      if (e.detail === 3) {
         countLap(e.target, -50)
-    }
+      }
+    });
 
+
+    window.addEventListener('contextmenu', function (e) {
+        countLap(e.target, -50)
     });
 
 
