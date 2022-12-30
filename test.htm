@@ -153,14 +153,14 @@
       // console.log(item)
       // 
       // create div
-        // document.body.innerHTML += `<div class="meeple" style="background-image:url(img/${meepleColor}meeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>`
+        document.body.innerHTML += `<div class="meeple" style="background-image:url(img/${meepleColor}meeple.png)" oncontextmenu="countLap(this, -50)" ondblclick="countLap(this, 50)"></div>`
         
-        var meeplediv = document.createElement('div')
-        meeplediv.className = "meeple"
-        meeplediv.style.backgroundImage = `url(img/${meepleColor}meeple.png`
-        meeplediv.ondblclick = countLap(this, 50)
-        meeplediv.oncontextmenu = countLap(this, -50)
-        document.body.appendChild(meeplediv)
+        // var meeplediv = document.createElement('div')
+        // meeplediv.className = "meeple"
+        // meeplediv.style.backgroundImage = `url(img/${meepleColor}meeple.png`
+        // meeplediv.ondblclick = countLap(this, 50)
+        // meeplediv.oncontextmenu = countLap(this, -50)
+        // document.body.appendChild(meeplediv)
 
     
     }
@@ -210,7 +210,18 @@
 
 
 
+    //add a third way to reduce counter, triple-click
+    window.addEventListener('click', function (evt) {
+    if (evt.detail === 3) {
+        alert('triple click!');
+        alert(evt.item)
+    }
 
+    if (evt.detail === 5) {
+        alert('5 click!');
+        alert(evt.item)
+    }
+    });
 
 
 function doubleTap(d,h,e){if("ontouchstart"in d){var h=Math.abs(+h)||500,e=Math.abs(+e)||40,i,f,g,j=function(){i=0;g=f=NaN};j();d.addEventListener("touchstart",function(b){var a=b.changedTouches[0]||{},c=f,k=g;i++;f=+a.pageX||+a.clientX||+a.screenX;g=+a.pageY||+a.clientY||+a.screenY;Math.abs(c-f)<e&&Math.abs(k-g)<e&&(c=document.createEvent("MouseEvents"),c.initMouseEvent&&c.initMouseEvent("dblclick",!0,!0,b.view,i,a.screenX,a.screenY,a.clientX,a.clientY,b.ctrlKey,b.altKey,b.shiftKey,b.metaKey,b.button,
