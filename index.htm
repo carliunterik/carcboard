@@ -250,25 +250,31 @@
 // a.target),d.dispatchEvent(c));setTimeout(j,h)},!1);d.addEventListener("touchmove",function(){j()},!1)}};
     
 
-
+// control tabs in touchscreens, some touchscreens can handle well clic emulation but other no.
+// this methos I set a timer of 400 ms to detect the number of taps and trigger the action
 var taps = 0;
 function tapHandler(e) {
+  // increase tap number
   taps += 1;
 
+  // if it is the first tap, run the timer to reset the number of taps to 0
   if(taps == 1) {
       setTimeout( function() { taps = 0; }, 400 );
       return false;
   }
+
+  // avoid zoom or other default browser behaivor
   e.preventDefault();
+  
   //action on double tap goes below
   if (taps === 2) {
     countLap(e.target, 50)
-    console.log("double tap")
+    // console.log("double tap")
   }
 
   if (taps === 3) {
     countLap(e.target, -100)
-    console.log("triple tap")
+    // console.log("triple tap")
   }
   
  }
