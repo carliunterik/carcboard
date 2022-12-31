@@ -253,23 +253,24 @@
 
 var taps = 0;
 function tapHandler(e) {
-    if(taps == 0) {
-      taps += 1;
-        setTimeout( function() { taps = 0; }, 300 );
-        return false;
-    }
-    e.preventDefault();
-    //action on double tap goes below
-    if (taps === 2) {
-      countLap(e.target, 50)
-      console.log("double tap")
-    }
+  taps += 1;
 
-    if (taps === 3) {
-      countLap(e.target, -100)
-      console.log("triple tap")
-    }
-    
+  if(taps == 1) {
+      setTimeout( function() { taps = 0; }, 300 );
+      return false;
+  }
+  e.preventDefault();
+  //action on double tap goes below
+  if (taps === 2) {
+    countLap(e.target, 50)
+    console.log("double tap")
+  }
+
+  if (taps === 3) {
+    countLap(e.target, -100)
+    console.log("triple tap")
+  }
+  
  }
     
   </script>
