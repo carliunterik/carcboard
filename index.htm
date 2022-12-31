@@ -192,10 +192,10 @@
       //adjust font color for light colors (white and sandy)
       if (lightColors.some(lightColor => e.style.backgroundImage.includes(lightColor))) {
         e.style.color = "black"
-        e.style.textShadow = "white"
+        e.style.textShadow = "rgb(255, 255, 255) 0.25vw 0.25vw 0.25vw;"
       } else {
         e.style.fontSize = "white"
-        e.style.textShadow = "black"
+        e.style.textShadow = "rgb(0, 0, 0) 0.25vw 0.25vw 0.25vw;"
       }
 
       //avoid putting 0 on the meeple otherwise put the number
