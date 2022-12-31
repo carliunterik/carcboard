@@ -94,6 +94,7 @@
 
      // define posible colors
      const colors = ['red', 'blue', 'green','yellow', 'black', 'pink', 'grey', 'white', 'purple', 'orange', 'brown', 'sandy'];
+     const lightColors = ['white','sandy']
      const maxNumberMeeples = 6
 
     // get parameters
@@ -121,8 +122,6 @@
         } else {
           defaultMeeples()
         }
-
-	    
 
     } else if (typeof setting === 'string' || setting instanceof String) {
       // 2nd - enter colors, parse colors and change color list
@@ -190,6 +189,15 @@
         e.style.fontSize = "1.75vw"
       }
       
+      //adjust font color for light colors (white and sandy)
+      if (lightColors.some(lightColor => e.style.backgroundImage.includes(lightColor))) {
+        e.style.color = "black"
+        e.style.textShadow = "white"
+      } else {
+        e.style.fontSize = "white"
+        e.style.textShadow = "black"
+      }
+
       //avoid putting 0 on the meeple otherwise put the number
       if (newNumber == 0){
         e.innerText = ""
