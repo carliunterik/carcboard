@@ -213,7 +213,8 @@
       meeple.style.top=ys[i]+"vh";
 
       //add support for touch devices (simulate clic)
-      doubleTap(meeple);
+      // doubleTap(meeple);
+      meeple.addEventListener("touchstart", tapHandler);
 
 
       // // double click increase
@@ -245,10 +246,31 @@
 
 
 
-    function doubleTap(d,h,e){if("ontouchstart"in d){var h=Math.abs(+h)||500,e=Math.abs(+e)||40,i,f,g,j=function(){i=0;g=f=NaN};j();d.addEventListener("touchstart",function(b){var a=b.changedTouches[0]||{},c=f,k=g;i++;f=+a.pageX||+a.clientX||+a.screenX;g=+a.pageY||+a.clientY||+a.screenY;Math.abs(c-f)<e&&Math.abs(k-g)<e&&(c=document.createEvent("MouseEvents"),c.initMouseEvent&&c.initMouseEvent("click",!0,!0,b.view,i,a.screenX,a.screenY,a.clientX,a.clientY,b.ctrlKey,b.altKey,b.shiftKey,b.metaKey,b.button,
-a.target),d.dispatchEvent(c));setTimeout(j,h)},!1);d.addEventListener("touchmove",function(){j()},!1)}};
+//     function doubleTap(d,h,e){if("ontouchstart"in d){var h=Math.abs(+h)||500,e=Math.abs(+e)||40,i,f,g,j=function(){i=0;g=f=NaN};j();d.addEventListener("touchstart",function(b){var a=b.changedTouches[0]||{},c=f,k=g;i++;f=+a.pageX||+a.clientX||+a.screenX;g=+a.pageY||+a.clientY||+a.screenY;Math.abs(c-f)<e&&Math.abs(k-g)<e&&(c=document.createEvent("MouseEvents"),c.initMouseEvent&&c.initMouseEvent("click",!0,!0,b.view,i,a.screenX,a.screenY,a.clientX,a.clientY,b.ctrlKey,b.altKey,b.shiftKey,b.metaKey,b.button,
+// a.target),d.dispatchEvent(c));setTimeout(j,h)},!1);d.addEventListener("touchmove",function(){j()},!1)}};
     
 
+
+var taps = 0;
+function tapHandler(e) {
+    if(tap == 0) {
+      taps += 1;
+        setTimeout( function() { taps = 0; }, 300 );
+        return false;
+    }
+    e.preventDefault();
+    //action on double tap goes below
+    if (taps === 2) {
+      countLap(e.target, 50)
+      // console.log("double")
+    }
+
+    if (taps === 3) {
+      countLap(e.target, -100)
+      // console.log("triple")
+    }
+    
+ }
     
   </script>
 </body>
