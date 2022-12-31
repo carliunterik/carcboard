@@ -162,13 +162,13 @@
     Draggable.zIndex = 0;
     Draggable.create(".meeple", {
         bounds:"body",
-        // onDragEnd: function(e){
-        //     var viewportOffset = e.srcElement.getBoundingClientRect();
-        //     // these are relative to the viewport
-        //     var top = viewportOffset.top;
-        //     var left = viewportOffset.left;
-        //     // console.log(top/document.documentElement.clientHeight, left/document.documentElement.clientWidth)
-        // }
+        onDragEnd: function(e){
+            var viewportOffset = e.srcElement.getBoundingClientRect();
+            // these are relative to the viewport
+            var top = viewportOffset.top;
+            var left = viewportOffset.left;
+            // console.log(top/document.documentElement.clientHeight, left/document.documentElement.clientWidth)
+        }
     });
 
 
@@ -265,7 +265,7 @@ function tapHandler(e) {
 
   // avoid zoom or other default browser behaivor
   e.preventDefault();
-  
+
   //action on double tap goes below
   if (taps === 2) {
     countLap(e.target, 50)
